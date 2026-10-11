@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "Renders all six faces of end portals and nether portals, culling only the shared side faces between adjacent same-kind portals.",
+  "authors": [
+    "Liuyue_awa"
+  ],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "thick_portal_rendering.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.4",
+    "${fabric_api_dependency}": "*",
+    "minecraft": "${minecraft_dependency}"
+  }
+}

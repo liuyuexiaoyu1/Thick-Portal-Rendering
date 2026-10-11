@@ -1,0 +1,21 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "minecraft:block/nether_portal",
+        "portal": "minecraft:block/nether_portal"
+    },
+    "elements": [
+        {
+            "from": [ 6, 0, 0 ],
+            "to": [ 10, 16, 16 ],
+            "faces": {
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#portal", "cullface": "east",  "shade": false },
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#portal", "cullface": "west",  "shade": false },
+                "up":    { "uv": [ 0, 0, 4, 16 ],  "texture": "#portal", "cullface": "up",    "shade": false },
+                "down":  { "uv": [ 0, 0, 4, 16 ],  "texture": "#portal", "cullface": "down",  "shade": false },
+                "north": { "uv": [ 0, 0, 16, 4 ],  "texture": "#portal", "cullface": "north", "shade": false },
+                "south": { "uv": [ 0, 0, 16, 4 ],  "texture": "#portal", "cullface": "south", "shade": false }
+            }
+        }
+    ]
+}
