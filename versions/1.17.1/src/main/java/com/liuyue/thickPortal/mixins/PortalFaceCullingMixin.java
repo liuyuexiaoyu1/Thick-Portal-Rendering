@@ -23,9 +23,19 @@ public abstract class PortalFaceCullingMixin {
 			Direction.Axis faceAxis = side.getAxis();
 			boolean largeFace = axis == Direction.Axis.X ? faceAxis == Direction.Axis.Z : faceAxis == Direction.Axis.X;
 
-			if (largeFace || level.getBlockState(neighborPos).getBlock() != block) {
-				cir.setReturnValue(true);
-			} else {
+			if (largeFace) {
+				return;
+			}
+
+			BlockState neighbor = level.getBlockState(neighborPos);
+			if (neighbor.getBlock() != block) {
+				return;
+			}
+
+			Direction.Axis neighborAxis = neighbor.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+			boolean neighborLargeFace = neighborAxis == Direction.Axis.X ? faceAxis == Direction.Axis.Z : faceAxis == Direction.Axis.X;
+
+			if (!neighborLargeFace) {
 				cir.setReturnValue(false);
 			}
 			return;
@@ -34,10 +44,7 @@ public abstract class PortalFaceCullingMixin {
 		if (block == Blocks.END_PORTAL) {
 			if (level.getBlockState(neighborPos).getBlock() == block) {
 				cir.setReturnValue(false);
-			} else {
-				cir.setReturnValue(true);
 			}
 		}
 	}
-
 }
