@@ -9,7 +9,7 @@
   ],
   "contact": {},
   "license": "LGPL-3.0",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {},
   "mixins": [
     "thick_portal_rendering.mixins.json"
