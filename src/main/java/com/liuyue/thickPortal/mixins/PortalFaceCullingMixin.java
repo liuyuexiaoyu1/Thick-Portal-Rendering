@@ -17,23 +17,34 @@ public abstract class PortalFaceCullingMixin {
 	@Inject(method = "shouldRenderFace", at = @At(value = "HEAD"), cancellable = true)
 	private static void thickportal$cullSharedFace(BlockState state, BlockGetter level, BlockPos pos, Direction side, CallbackInfoReturnable<Boolean> cir) {
 		Block block = state.getBlock();
+		BlockState neighborState = level.getBlockState(pos.relative(side));
+		Block neighborBlock = neighborState.getBlock();
 
 		if (block == Blocks.NETHER_PORTAL) {
+			if (neighborBlock != Blocks.NETHER_PORTAL) {
+				return;
+			}
+
 			Direction.Axis axis = state.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+			Direction.Axis neighborAxis = neighborState.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+
+			if (axis != neighborAxis) {
+				return;
+			}
+
 			Direction.Axis faceAxis = side.getAxis();
 			boolean largeFace = axis == Direction.Axis.X ? faceAxis == Direction.Axis.Z : faceAxis == Direction.Axis.X;
 
-			if (!largeFace && level.getBlockState(pos.relative(side)).getBlock() == block) {
+			if (!largeFace) {
 				cir.setReturnValue(false);
 			}
 			return;
 		}
 
 		if (block == Blocks.END_PORTAL) {
-			if (level.getBlockState(pos.relative(side)).getBlock() == block) {
+			if (neighborBlock == Blocks.END_PORTAL) {
 				cir.setReturnValue(false);
 			}
 		}
 	}
-
 }
