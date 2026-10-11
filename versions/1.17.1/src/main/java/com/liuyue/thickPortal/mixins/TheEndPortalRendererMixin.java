@@ -11,10 +11,9 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public abstract class TheEndPortalRendererMixin {
 	@ModifyArgs(
 			method = "renderCube",
-			require = 0,
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/renderer/blockentity/TheEndPortalRenderer;renderFace"
+					target = "Lnet/minecraft/client/renderer/blockentity/TheEndPortalRenderer;renderFace(Lnet/minecraft/world/level/block/entity/TheEndPortalBlockEntity;Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFFFFFLnet/minecraft/core/Direction;)V"
 			)
 	)
 	private void thickportal$squeezeIntoPortalShape(Args args) {
